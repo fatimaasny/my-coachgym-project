@@ -1,0 +1,39 @@
+.gallery {
+  width: 80%;
+  height: 93vh;
+  margin: 0 auto;
+}
+.gallery .items {
+  display: flex;
+  gap: 20px;
+  /* width: 3960px; */
+  width: 3700px;
+  height: 520px;
+}
+.items .itemImg {
+  /* width: 380px;
+  height: 500px; */
+  width: fit-content;
+  height: fit-content;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.itemImg img {
+  display: block;
+}
+.gallery .buttons {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto 0;
+}
+.gallery .buttons button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.gallery .buttons .btn-right {
+}
+.gallery .buttons .btn-left {
+}

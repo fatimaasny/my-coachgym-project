@@ -1,0 +1,21 @@
+.footer {
+  width: 100%;
+  height: 7vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+.footer .management {
+  font-size: 0.9rem;
+  color: #fff;
+}
+.footer .management a {
+  color: #aaa;
+}
+.footer .designer a {
+  color: #ddd;
+  font-size: 0.85rem;
+}

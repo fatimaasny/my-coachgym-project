@@ -1,0 +1,36 @@
+.item {
+  width: 45%;
+  display: flex;
+  border-radius: 10px;
+  padding: 4rem 1rem;
+  /* border: 1px solid #aaa;
+  background-color: #000; */
+  background-color: #e6eaee;
+  border: 1px solid #ccc;
+}
+.item .card-image {
+  overflow: hidden;
+}
+.item .card-image img {
+  display: block;
+}
+.item .text {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1rem;
+  color: #000;
+}
+.item .text h3 {
+  font-size: 1rem;
+}
+.item .text .para {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+.item .text .date {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}

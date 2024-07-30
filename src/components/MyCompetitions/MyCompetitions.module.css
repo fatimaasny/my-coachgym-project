@@ -1,0 +1,9 @@
+.competitions {
+  width: 80%;
+  margin: 0 auto;
+}
+.competitions .items {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+}

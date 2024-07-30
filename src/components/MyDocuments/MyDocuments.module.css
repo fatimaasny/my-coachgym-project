@@ -1,0 +1,13 @@
+.documents {
+  width: 80%;
+  height: 70vh;
+  margin: 0 auto;
+  /* padding: 1rem; */
+}
+.documents .title {
+}
+.documents .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

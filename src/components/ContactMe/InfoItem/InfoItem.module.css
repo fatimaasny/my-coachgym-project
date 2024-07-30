@@ -1,0 +1,13 @@
+.info-item {
+  margin-bottom: 2rem;
+}
+
+.info-item p:first-child {
+    font-size: 0.85rem;
+    color: #222;
+}
+.info-item p:last-child {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}

@@ -1,0 +1,102 @@
+.info {
+  height: 90vh;
+  width: 80%;
+  margin: 0 auto;
+  /* background-color: #eeedeb; */
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.info .right {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 40%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.info .card-image {
+  overflow: hidden;
+  width: fit-content;
+}
+.info .right img {
+  display: block;
+}
+.info .right h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+.info .right .btn-card {
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+.info .right .btn-card span {
+  color: #777;
+}
+.info .right .icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  width: 60%;
+}
+.info .right .icons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem;
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.info .left {
+  width: 60%;
+  /* padding: 6rem 1rem; */
+  padding-right: 1rem;
+  margin: auto 0;
+}
+.info .left h1 {
+  font-size: 3rem;
+  color: #333;
+}
+.info .left .btn-reservation {
+  margin-top: 2.5rem;
+  background: #000;
+  color: #fff;
+  width: 11rem;
+  height: 4rem;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.info .left .btn-reservation span {
+  margin-left: 0.5rem;
+}
+.info .left .btn-reservation:hover {
+  color: #444;
+}
+.info .left .items {
+  width: 80%;
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info .left .items p {
+  display: flex;
+  align-items: center;
+  color: #777;
+  margin-top: 1rem;
+}
+.info .left .items p span {
+  margin-right: 0.5rem;
+}

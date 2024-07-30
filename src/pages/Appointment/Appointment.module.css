@@ -1,0 +1,147 @@
+.appointment {
+}
+.content {
+}
+.title {
+  margin: 3rem 3rem 0 0;
+}
+.form {
+  width: 45%;
+  margin: 2rem auto;
+}
+.form input[type="text"] {
+  width: 500px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  outline: none;
+  padding-right: 0.5rem;
+  color: #777;
+}
+
+.form {
+  color: #444;
+}
+.form-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.form-input label {
+  font-family: Vazir-bold;
+  font-size: 0.9rem;
+}
+.gender,
+.reserve,
+.programm {
+  display: flex;
+  margin-top: 2rem;
+}
+.gender p,
+.reserve p,
+.programm p {
+  margin-left: 0.5rem;
+  font-family: Vazir-bold;
+}
+.gender span,
+.reserve span,
+.programm span {
+  margin-right: 2rem;
+}
+.gender span input,
+.reserve span input,
+.programm span input {
+  margin-right: 4px;
+}
+.price {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+}
+.price p {
+  font-family: Vazir-bold;
+  margin-left: 2rem;
+}
+.btn-price,
+.btn-uploding,
+.btn-sending {
+  width: 100px;
+  height: 45px;
+  border: none;
+  background: #000;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  border: 1px solid #000;
+}
+.btn-price:hover,
+.btn-uploding:hover,
+.btn-sending:hover {
+  color: #000;
+}
+
+.questions {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+.questions .title-q {
+  font-size: 1.2rem;
+  color: #000;
+  font-family: Vazir-bold;
+}
+.details {
+  display: flex;
+  gap: 80px;
+  margin-top: 1.5rem;
+}
+
+.details div label {
+  font-size: 0.9rem;
+  font-family: Vazir-bold;
+}
+.details div input {
+  margin-right: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+.textarea textarea {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+.uploading {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.uploading .show-images {
+  display: flex;
+  margin-top: 1rem;
+  gap: 20px;
+}
+.rules {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.rules input {
+}
+
+.rules p {
+  margin-right: 0.5rem;
+}
+.rules a {
+  color: #444;
+}
+.send {
+  display: flex;
+  justify-content: end;
+}

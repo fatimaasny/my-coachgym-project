@@ -1,0 +1,24 @@
+.aboutme {
+  width: 7rem;
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 77%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.aboutme a {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #777;
+  font-size: 0.85rem;
+  text-align: center;
+  text-decoration: none;
+}
+.aboutme a:first-child {
+  border-bottom: 1px solid #eee;
+}
