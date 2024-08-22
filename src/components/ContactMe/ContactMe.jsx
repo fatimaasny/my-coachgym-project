@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { FaInstagram } from "react-icons/fa";
 import InfoItem from "./InfoItem/InfoItem";
 
 const list = [
@@ -18,11 +19,13 @@ const list = [
     icon: <IoCallOutline fontSize="1.5rem" color="#222" />,
     title: "شماره تماس:",
     text: "09171488436",
+    url: "tel:+98-0917-148-8436",
   },
   {
-    icon: <MdOutlineMailOutline fontSize="1.5rem" color="#222" />,
+    icon: <FaInstagram fontSize="1.5rem" color="#222" />,
     title: "اینستاگرام:",
     text: "ahmaad.alizade",
+    url: "https://instagram.com/ahmaad.alizade",
   },
 ];
 
@@ -35,7 +38,12 @@ function ContactMe() {
         <div className={styles.content}>
           <div className={styles.info}>
             {list.map((l, index) => (
-              <InfoItem icon={l.icon} title={l.title} text={l.text} />
+              <InfoItem
+                icon={l.icon}
+                title={l.title}
+                text={l.text}
+                url={l.url}
+              />
             ))}
           </div>
           <div className={styles["sending-message"]}>

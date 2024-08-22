@@ -19,3 +19,12 @@
   color: #ddd;
   font-size: 0.85rem;
 }
+
+@media (max-width: 550px) {
+  .footer .management {
+    font-size: 0.75rem;
+  }
+  .footer .designer a {
+    font-size: 0.7rem;
+  }
+}

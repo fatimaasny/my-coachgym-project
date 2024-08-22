@@ -3,7 +3,7 @@ import styles from "./VideoItem.module.css";
 function VideoItem(props) {
   return (
     <div className={styles.content}>
-      <video className={styles.video} width="400px" height="400px" controls>
+      <video className={styles.video} width="350px" height="350px" controls>
         <source src={props.source} type={props.type} />
       </video>
       <p className={styles.title}>

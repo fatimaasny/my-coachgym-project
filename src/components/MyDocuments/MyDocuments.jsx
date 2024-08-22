@@ -11,7 +11,6 @@ function MyDocuments() {
     <>
       <a id="documentations"></a>
       <div className={styles.documents}>
-        <a id="documentations"></a>
         <Title title="مدارک من" className={styles.title} />
         <div className={styles.content}>
           <Item image={imgDegree3} title="مدرک درجه3" date="تابستان 1395" />

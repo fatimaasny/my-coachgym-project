@@ -1,71 +1,67 @@
 .info {
-  height: 90vh;
-  width: 80%;
-  margin: 0 auto;
-  /* background-color: #eeedeb; */
+  /* height: 90vh;
+   */
+  height: fit-content;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 6rem 10rem 1rem;
 }
-.info .right {
+.right {
   text-align: center;
   border: 1px solid #ddd;
   border-radius: 10px;
-  width: 40%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.info .card-image {
-  overflow: hidden;
-  width: fit-content;
+
+.right img {
+  border-radius: 10px;
 }
-.info .right img {
-  display: block;
-}
-.info .right h1 {
+.right h1 {
   font-size: 2rem;
   margin-top: 1rem;
 }
-.info .right .btn-card {
+.right .btn-card {
   margin-top: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 20px;
   padding: 0.5rem 1rem;
 }
-.info .right .btn-card span {
+.right .btn-card span {
   color: #777;
 }
-.info .right .icons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-  width: 60%;
-}
-.info .right .icons button {
+.right .icons {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem;
+  gap: 2rem;
+  margin-top: 1rem;
+  width: 60%;
+}
+.right .icons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.6rem;
   background-color: #fdfdfd;
   border: 1px solid #ddd;
   cursor: pointer;
 }
 
-.info .left {
-  width: 60%;
-  /* padding: 6rem 1rem; */
+.left {
   padding-right: 1rem;
   margin: auto 0;
 }
-.info .left h1 {
+.left .title {
   font-size: 3rem;
   color: #333;
 }
-.info .left .btn-reservation {
+.left .btn-reservation {
   margin-top: 2.5rem;
   background: #000;
   color: #fff;
@@ -78,25 +74,64 @@
   justify-content: center;
   cursor: pointer;
 }
-.info .left .btn-reservation span {
+.left .btn-reservation span {
   margin-left: 0.5rem;
 }
-.info .left .btn-reservation:hover {
+.left .btn-reservation:hover {
   color: #444;
 }
-.info .left .items {
+.left .items {
   width: 80%;
   margin-top: 2.5rem;
   display: flex;
   justify-content: space-between;
+  /* gap: 1.5rem; */
 }
 
-.info .left .items p {
+.left .items p {
   display: flex;
   align-items: center;
   color: #777;
   margin-top: 1rem;
 }
-.info .left .items p span {
+.left .items p span {
   margin-right: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  .right img {
+    width: 90%;
+  }
+  .items {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 990px) {
+  .info {
+    flex-direction: column;
+    padding: 5rem 2rem 1rem;
+  }
+  .left .title {
+    font-size: 1.7rem;
+    width: 90%;
+  }
+  .items {
+    width: 100%;
+  }
+  .items span {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1250px) {
+  .info {
+    padding: 5rem 4rem 1rem;
+  }
+  .left .title {
+    font-size: 2.5rem;
+  }
+  .items span {
+    font-size: 0.98rem;
+  }
 }

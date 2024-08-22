@@ -17,7 +17,7 @@ function Home() {
       <MyDocuments />
       <MyCompetitions />
       <MyTraining />
-      <MyGallery />
+      {/* <MyGallery /> */}
       <ContactMe />
       <Footer />
     </div>

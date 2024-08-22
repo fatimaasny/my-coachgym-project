@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <p className={styles.management}>
-        تمامی حقوق این سایت متعلق به مدیریت باشگاه پرشین،
+        تمامی حقوق این سایت متعلق به
         <a href="#home"> احمد علیزاده </a>
         می باشد.
       </p>

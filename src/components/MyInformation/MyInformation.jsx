@@ -3,7 +3,7 @@ import styles from "./MyInformation.module.css";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { FaInstagram } from "react-icons/fa";
 import { RiTelegramLine } from "react-icons/ri";
@@ -20,27 +20,34 @@ function MyInformation() {
       <a id="home"></a>
       <div className={styles.info}>
         <Card className={styles.right}>
-          <Card className={styles["card-image"]}>
-            <img src={profileAhmad} alt="ahmad.jpg" />
-          </Card>
+          <img src={profileAhmad} alt="ahmad.jpg" />
+
           <h1>احمد علیزاده</h1>
           <div className={styles["btn-card"]}>
             <span>مربی باشگاه بدنسازی</span>
           </div>
           <div className={styles.icons}>
             <button>
-              <FaInstagram fontSize="1.5rem" color="#888" />
+              <Link to={"https://istagram.com/ahmaad.alizade"} target="_blank">
+                <FaInstagram fontSize="1.5rem" color="#888" />
+              </Link>
             </button>
             <button>
-              <RiTelegramLine fontSize="1.5rem" color="#888" />
+              <Link to={"https://t.me/Ahmad_a00"} target="_blank">
+                <RiTelegramLine fontSize="1.5rem" color="#888" />
+              </Link>
             </button>
             <button>
-              <FaWhatsapp fontSize="1.5rem" color="#888" />
+              <Link to={"https://wa.me/9171488436"} target="_blank">
+                <FaWhatsapp fontSize="1.5rem" color="#888" />
+              </Link>
             </button>
           </div>
         </Card>
         <div className={styles.left}>
-          <h1>سلام، من احمد علیزاده هستم، مربی باشگاه بدنسازی پرشین</h1>
+          <h1 className={styles.title}>
+            سلام، من احمد علیزاده هستم، مربی باشگاه بدنسازی پرشین
+          </h1>
           <Button className={styles["btn-reservation"]}>
             <span
               onClick={() => {

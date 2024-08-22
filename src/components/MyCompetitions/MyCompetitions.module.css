@@ -1,9 +1,27 @@
 .competitions {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 10rem;
 }
 .competitions .items {
   display: flex;
-  gap: 80px;
+  gap: 2rem;
   flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+}
+@media (max-width: 990px) {
+  .competitions {
+    padding: 1rem 2rem;
+  }
+  .items {
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+@media (min-width: 991px) and (max-width: 1250px) {
+  .competitions {
+    padding: 1rem 4rem;
+  }
+  
 }

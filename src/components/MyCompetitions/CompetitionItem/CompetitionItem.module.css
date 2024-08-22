@@ -3,10 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 350px;
-  height: 550px;
-  padding: 1rem;
-  border: 1px solid #ccc;
+  /* width: 350px;
+  height: 550px; */
+  padding: 1rem 2rem;
+  /* border: 1px solid #ccc; */
+  border: 2px solid #000;
   border-radius: 10px;
   background: #e6eaee;
 }
@@ -18,20 +19,32 @@
 .item .content {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  color: #666;
-
+  color: #000;
 }
 .item .content .date {
   margin-top: 1rem;
-  /* color: #ccc; */
 }
 .item .content .title {
   margin-top: 1rem;
   font-size: 1.2rem;
-  /* color: #eee; */
+  font-weight: bold;
 }
 .item .content .degree {
   margin-top: 1rem;
-  /* color: #ccc; */
+}
 
+@media (max-width: 400px) {
+  .item .content .title {
+    font-size: 0.9rem;
+  }
+  .item .content .date,
+  .item .content .degree {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 990px) {
+  .item img {
+    width: 90%;
+  }
 }

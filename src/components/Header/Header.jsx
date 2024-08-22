@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
+
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AboutMeOverlay from "./AboutMeOverlay/AboutMeOverlay";
+import Navbar from "./Navbar/Navbar";
+
+import { GiHamburgerMenu } from "react-icons/gi";
+import MenuOverlay from "./MenuOverlay/MenuOverlay";
+// import AboutMeOverlay from "./AboutMeOverlay/AboutMeOverlay";
 function Header() {
   const [scrollHeader, setScrollHeader] = useState(false);
   const [isAboutMeOverlay, setIsAboutMeOverlay] = useState(false);
+  const [isMenuOverlay, setIsMenuOverlay] = useState(false);
   const showAboutMeHandler = () => {
     console.log("show");
     setIsAboutMeOverlay(true);
@@ -12,6 +18,12 @@ function Header() {
   const hideAboutMeHandler = () => {
     console.log("hide");
     setIsAboutMeOverlay(false);
+  };
+  const showMenuOverlay = () => {
+    setIsMenuOverlay(true);
+  };
+  const hideMenuOverlay = () => {
+    setIsMenuOverlay(false);
   };
 
   useEffect(() => {
@@ -30,39 +42,28 @@ function Header() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${scrollHeader && styles.scroll}`}>
-      <Link to={"/"}>
-        <h1>Ahmad</h1>
-      </Link>
-      <ul>
-        <li>
-          <Link to={"/"}>خانه</Link>
-        </li>
-        <li>
-          <p onClick={showAboutMeHandler}>درباره من</p>
-        </li>
-        {isAboutMeOverlay && (
-          <AboutMeOverlay hideAboutMeHandler={hideAboutMeHandler} />
-        )}
-
-        <li>
-          <Link to={"/appointment"}>سفارش برنامه</Link>
-        </li>
-
-        <li>
-          <a href="#training">آموزش ها</a>
-        </li>
-        <li>
-          <a href="#gallery">گالری</a>
-        </li>
-        <li>
-          <Link to={"/legal"}>قوانین</Link>
-        </li>
-        <li>
-          <a href="#contactMe">ارتباط با من</a>
-        </li>
-      </ul>
-    </header>
+    <div className="relative">
+      {isMenuOverlay && (
+        <MenuOverlay
+          hideMenuOverlay={hideMenuOverlay}
+          isMenuOverlay={isMenuOverlay}
+        />
+      )}
+      <header className={`${styles.header} ${scrollHeader && styles.scroll}`}>
+        <Navbar
+          class="rownavbar"
+          isAboutMeOverlay={isAboutMeOverlay}
+          showAboutMeHandler={showAboutMeHandler}
+          hideAboutMeHandler={hideAboutMeHandler}
+        />
+        <button className={styles.btnmenu} onClick={showMenuOverlay}>
+          <GiHamburgerMenu color="#fff" fontSize="2rem" />
+        </button>
+        <Link to={"/"}>
+          <h1>Ahmad</h1>
+        </Link>
+      </header>
+    </div>
   );
 }
 
