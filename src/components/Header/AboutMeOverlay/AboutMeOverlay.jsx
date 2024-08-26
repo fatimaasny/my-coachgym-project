@@ -7,7 +7,8 @@ function AboutMeOverlay(props) {
       <a
         href="#documentations"
         onClick={() => {
-          props.hideAboutMeHandler();
+          // props.hideAboutMeHandler();
+          props.hideVisibleisibleHandler();
         }}
       >
         مدارک من
@@ -15,7 +16,8 @@ function AboutMeOverlay(props) {
       <a
         href="#competitions"
         onClick={() => {
-          props.hideAboutMeHandler();
+          // props.hideAboutMeHandler();
+          props.hideVisibleisibleHandler();
         }}
       >
         مسابقات من

@@ -53,12 +53,15 @@ function MyGallery() {
       <div className={styles.gallery}>
         <Title title="گالری من" />
         <div
+          className={styles.contentref}
           ref={contentRef}
           style={{
-            width: "1200px",
-            margin: "0 auto",
+            // width: "1200px",
+            width: "100%",
+            // margin: "0 auto",
             overflowX: "scroll",
             scrollBehavior: "smooth",
+            // background: "yellow",
           }}
         >
           <div className={styles.items}>

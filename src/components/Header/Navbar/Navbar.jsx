@@ -1,20 +1,38 @@
 import styles from "./Navbar.module.css";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AboutMeOverlay from "../AboutMeOverlay/AboutMeOverlay";
 
 function Navbar(props) {
+  const [visibleOverlayAboutMe, setVisibleOverlayAboutMe] = useState(false);
+  const showVisibleisibleHandler = () => {
+    setVisibleOverlayAboutMe(true);
+  };
+  const hideVisibleisibleHandler = () => {
+    setVisibleOverlayAboutMe(false);
+  };
   return (
     <ul className={`${styles[props.class]}`}>
       <li>
         <Link to={"/"}>خانه</Link>
       </li>
-      <li>
-        <p onClick={props.showAboutMeHandler}>درباره من</p>
+      <li
+        className={styles["aboutme-li"]}
+        onMouseEnter={showVisibleisibleHandler}
+        onMouseLeave={hideVisibleisibleHandler}
+      >
+        درباره من
+        {/* <p onClick={props.showAboutMeHandler}>درباره من</p> */}
+        {visibleOverlayAboutMe && (
+          <AboutMeOverlay
+            hideVisibleisibleHandler={hideVisibleisibleHandler}
+            class={props.class === "colnavbar" ? "colnav" : ""}
+          />
+        )}
       </li>
-      {props.isAboutMeOverlay && (
+      {/* {props.isAboutMeOverlay && (
         <AboutMeOverlay hideAboutMeHandler={props.hideAboutMeHandler} />
-      )}
+      )} */}
 
       <li>
         <Link to={"/appointment"}>سفارش برنامه</Link>

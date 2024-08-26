@@ -1,7 +1,10 @@
 .gallery {
-  width: 80%;
-  height: 93vh;
-  margin: 0 auto;
+  /* width: 80%;
+  height: 93vh; */
+  /* margin: 0 auto; */
+  width: 100%;
+  height: fit-content;
+  padding: 1rem 10rem;
 }
 .gallery .items {
   display: flex;
@@ -13,13 +16,17 @@
 .items .itemImg {
   /* width: 380px;
   height: 500px; */
-  width: fit-content;
-  height: fit-content;
+  /* width: fit-content;
+  height: fit-content; */
+  width: 350px;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   border-radius: 10px;
 }
 .itemImg img {
   display: block;
+  border-radius: 10px;
 }
 .gallery .buttons {
   display: flex;
@@ -36,4 +43,18 @@
 .gallery .buttons .btn-right {
 }
 .gallery .buttons .btn-left {
+}
+
+@media (max-width: 500px) {
+}
+
+@media (max-width: 990px) {
+  .gallery {
+    padding: 1rem 2rem;
+  }
+}
+@media (min-width: 991px) and (max-width: 1250px) {
+  .gallery {
+    padding: 1rem 4rem;
+  }
 }

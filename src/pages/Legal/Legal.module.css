@@ -31,3 +31,9 @@
   margin-top: 1.8rem;
   color: #777;
 }
+.list a {
+  color: #444;
+}
+/* .list a:hover {
+  color: #444;
+} */

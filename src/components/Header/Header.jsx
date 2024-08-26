@@ -9,16 +9,16 @@ import MenuOverlay from "./MenuOverlay/MenuOverlay";
 // import AboutMeOverlay from "./AboutMeOverlay/AboutMeOverlay";
 function Header() {
   const [scrollHeader, setScrollHeader] = useState(false);
-  const [isAboutMeOverlay, setIsAboutMeOverlay] = useState(false);
+  // const [isAboutMeOverlay, setIsAboutMeOverlay] = useState(false);
   const [isMenuOverlay, setIsMenuOverlay] = useState(false);
-  const showAboutMeHandler = () => {
-    console.log("show");
-    setIsAboutMeOverlay(true);
-  };
-  const hideAboutMeHandler = () => {
-    console.log("hide");
-    setIsAboutMeOverlay(false);
-  };
+  // const showAboutMeHandler = () => {
+  //   console.log("show");
+  //   setIsAboutMeOverlay(true);
+  // };
+  // const hideAboutMeHandler = () => {
+  //   console.log("hide");
+  //   setIsAboutMeOverlay(false);
+  // };
   const showMenuOverlay = () => {
     setIsMenuOverlay(true);
   };
@@ -52,9 +52,9 @@ function Header() {
       <header className={`${styles.header} ${scrollHeader && styles.scroll}`}>
         <Navbar
           class="rownavbar"
-          isAboutMeOverlay={isAboutMeOverlay}
-          showAboutMeHandler={showAboutMeHandler}
-          hideAboutMeHandler={hideAboutMeHandler}
+          // isAboutMeOverlay={isAboutMeOverlay}
+          // showAboutMeHandler={showAboutMeHandler}
+          // hideAboutMeHandler={hideAboutMeHandler}
         />
         <button className={styles.btnmenu} onClick={showMenuOverlay}>
           <GiHamburgerMenu color="#fff" fontSize="2rem" />

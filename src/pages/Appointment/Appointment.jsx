@@ -11,57 +11,63 @@ function Appointment() {
       <div className={styles.content}>
         <h2 className={styles.title}>فرم سفارش برنامه:</h2>
         <form className={styles.form}>
-          <div className={styles["form-input"]}>
-            <label htmlFor="fullName">نام و نام خانوادگی</label>
+          <label className={styles["form-input"]} htmlFor="fullName">
+            نام و نام خانوادگی
             <input id="fullName" type="text" />
-          </div>
-          <div className={styles["form-input"]}>
-            <label htmlFor="phone">شماره تماس</label>
+          </label>
+
+          <label className={styles["form-input"]} htmlFor="phone">
+            شماره تماس
             <input id="phone" type="text" />
-          </div>
-          <div className={styles["form-input"]}>
-            <label htmlFor="telegram">شماره تلگرام</label>
+          </label>
+          <label className={styles["form-input"]} htmlFor="telegram">
+            شماره تلگرام
             <input id="telegram" type="text" />
-          </div>
+          </label>
           <div className={styles.gender}>
             <p>جنسیت :</p>
-
-            <span>
+            <label htmlFor="female">
               خانم
               <input type="radio" name="gender" id="female" value="" />
-            </span>
-            <span>
+            </label>
+
+            <label htmlFor="male">
               آقا
               <input type="radio" name="gender" id="male" value="" />
-            </span>
+            </label>
           </div>
 
           <div className={styles.reserve}>
             <p>رزرو نوبت :</p>
-            <span>
+            <label htmlFor="peresent">
               حضوری
               <input type="radio" name="appointment" id="peresent" value="" />
-            </span>
-            <span>
+            </label>
+            <label htmlFor="online">
               غیر حضوری
               <input type="radio" name="appointment" id="online" value="" />
-            </span>
+            </label>
           </div>
 
           <div className={styles.programm}>
             <p>نوع برنامه :</p>
-            <span>
+            <label htmlFor="exercise">
               تمرینی
-              <input type="radio" name="programm" id="peresent" value="" />
-            </span>
-            <span>
+              <input type="radio" name="programm" id="exercise" value="" />
+            </label>
+            <label htmlFor="feeding">
               تغذیه
-              <input type="radio" name="programm" id="online" value="" />
-            </span>
-            <span>
+              <input type="radio" name="programm" id="feeding" value="" />
+            </label>
+            <label htmlFor="exercise-feeding">
               تمرین و تغذیه
-              <input type="radio" name="programm" id="online" value="" />
-            </span>
+              <input
+                type="radio"
+                name="programm"
+                id="exercise-feeding"
+                value=""
+              />
+            </label>
           </div>
           <div className={styles.price}>
             <p>هزینه پرداختی</p>
@@ -71,50 +77,51 @@ function Appointment() {
             <p className={styles["title-q"]}>سوالات:</p>
             {/* سوالات مشترک */}
             <div className={styles.details}>
-              <div>
-                <label htmlFor="age">سن</label>
-                <input type="number" min="1" max="100" />
-              </div>
-              <div>
-                <label htmlFor="height">قد</label>
-                <input type="number" min="50" max="200" />
-              </div>
-              <div>
-                <label htmlFor="weigth">وزن</label>
-                <input type="number" min="20" max="200" />
-              </div>
+              <label htmlFor="age">
+                سن
+                <input type="number" id="age" min="10" max="100" />
+              </label>
+
+              <label htmlFor="height">
+                قد
+                <input type="number" id="height" min="100" max="200" />
+              </label>
+              <label htmlFor="weigth">
+                وزن
+                <input type="number" id="weight" min="30" max="200" />
+              </label>
             </div>
 
             {/* سوالات مخصوص تمرین */}
-            <div className={styles["form-input"]}>
-              <label htmlFor="sickness">سابقه بیماری</label>
-              <input type="text" />
-            </div>
-            <div className={styles["form-input"]}>
-              <label htmlFor="practice">سابقه تمرین</label>
-              <input type="text" />
-            </div>
-            <div className={styles["form-input"]}>
-              <label htmlFor="goal">هدف از تمرین</label>
-              <input type="text" />
-            </div>
-            <div className={styles["form-input"]}>
-              <label htmlFor="pain">درد در ناحیه خاص</label>
-              <input type="text" />
-            </div>
-            <div className={styles["form-input"]}>
-              <label htmlFor="supplement">مکمل مصرفی</label>
-              <input type="text" />
-            </div>
+            <label className={styles["form-input"]} htmlFor="sickness">
+              سابقه بیماری
+              <input type="text" id="sickness" />
+            </label>
+            <label className={styles["form-input"]} htmlFor="practice">
+              سابقه تمرین
+              <input type="text" id="practice" />
+            </label>
+            <label className={styles["form-input"]} htmlFor="goal">
+              هدف از تمرین
+              <input type="text" id="goal" />
+            </label>
+            <label className={styles["form-input"]} htmlFor="pain">
+              درد در ناحیه خاص
+              <input type="text" id="pain" />
+            </label>
+            <label className={styles["form-input"]} htmlFor="supplement">
+              مکمل مصرفی
+              <input type="text" id="supplement" />
+            </label>
             {/* سوالات مخصوص تغذیه */}
-            <div className={styles["form-input"]}>
-              <label htmlFor="allergy">حساسیت غذایی</label>
-              <input type="text" />
-            </div>
-            <div className={styles["form-input"]}>
-              <label htmlFor="time">ساعت تمرین</label>
-              <input type="text" />
-            </div>
+            <label className={styles["form-input"]} htmlFor="allergy">
+              حساسیت غذایی
+              <input type="text" id="allergy" />
+            </label>
+            <label className={styles["form-input"]} htmlFor="time">
+              ساعت تمرین
+              <input type="text" id="time" />
+            </label>
           </div>
           <div className={styles.textarea}>
             <textarea
@@ -131,9 +138,7 @@ function Appointment() {
           </div>
           <div className={styles.rules}>
             <input type="checkbox" name="" id="" />
-            <Link to={"/legal"}>
-              <p>تمامی قوانین سایت را می پذیرم.</p>
-            </Link>
+            <Link to={"/legal"}>تمامی قوانین سایت را می پذیرم.</Link>
           </div>
           <div className={styles.send}>
             <Button type="submit" className={styles["btn-sending"]}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./MyTraining.module.css";
 import Title from "../Title/Title";
@@ -67,30 +67,65 @@ const movies = [
 
 function MyTraining() {
   const [list, setList] = useState([...movies]);
+  const [updatedList, setUpdatedList] = useState([]);
   const [selected, setSelected] = useState("همه");
   const [searchInput, setSearchInput] = useState("");
+  const [lastIndexList, setLastIndexList] = useState(0);
+
   const handlerSelect = (value) => {
     setSelected(value);
   };
   const searchHandler = (event) => {
     setSearchInput(event.target.value);
   };
-  const filterHandler = (value) => {
+  const filterHandler = async (value) => {
+    await setLastIndexList(0);
+    await setUpdatedList([]);
+
     if (value === "همه") {
-      setList([...movies]);
+      await setList([...movies]);
     } else {
       const nlist = movies.filter((l) => l.category === value);
-      setList(nlist);
+      await setList(nlist);
     }
+    console.log("index :", lastIndexList, "up list:", updatedList);
+    showMoreHandler();
   };
-  const filterSearchHandler = () => {
+  const filterSearchHandler = async () => {
     if (searchInput === "") {
-      setList([...movies]);
+      await setList([...movies]);
     } else {
       const nlist = movies.filter((l) => l.title.includes(searchInput));
-      setList(nlist);
+      await setList(nlist);
     }
+    showMoreHandler();
   };
+
+  const showMoreHandler = async () => {
+    let count = 0;
+    while (count < 2) {
+      if (list[lastIndexList]) {
+        const newUpdatedList = list.slice(lastIndexList, lastIndexList + 1);
+        console.log(newUpdatedList);
+        if (updatedList.length !== 0) {
+          await setUpdatedList([...updatedList, ...newUpdatedList]);
+        } else {
+          await setUpdatedList([...newUpdatedList]);
+        }
+        await setLastIndexList(lastIndexList + 1);
+        console.log("index", lastIndexList);
+        count++;
+      } else {
+        return;
+      }
+    }
+    console.log("count", count);
+  };
+
+  useEffect(() => {
+    filterHandler("همه");
+    showMoreHandler();
+  }, []);
 
   return (
     <>
@@ -231,7 +266,7 @@ function MyTraining() {
           </div>
         </div>
         <div className={styles["list-videos"]}>
-          {list.map((i, index) => (
+          {updatedList.map((i, index) => (
             <VideoItem
               key={index}
               source={i.src}
@@ -242,7 +277,9 @@ function MyTraining() {
           ))}
         </div>
         <div className={styles.button}>
-          <Button className={styles["btn-show-more"]}>نمایش بیشتر</Button>
+          <Button className={styles["btn-show-more"]} onClick={showMoreHandler}>
+            نمایش بیشتر
+          </Button>
         </div>
       </div>
     </>

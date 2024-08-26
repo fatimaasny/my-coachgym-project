@@ -3,15 +3,20 @@
   position: absolute;
   z-index: 10;
   top: 100%;
-  left: 77%;
+  left: 80%;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   background: #fff;
   border: 1px solid #eee;
 }
+.aboutme.colnav {
+  top: 23%;
+  left: 10%;
+}
 
-.aboutme a {
+.aboutme a,
+.aboutme.colnav a {
   padding: 0.5rem;
   cursor: pointer;
   color: #777;
@@ -19,6 +24,19 @@
   text-align: center;
   text-decoration: none;
 }
-.aboutme a:first-child {
+.aboutme a:first-child,
+.aboutme.colnav a:first-child {
   border-bottom: 1px solid #eee;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.aboutme a:last-child,
+.aboutme.colnav a:last-child {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.aboutme a:hover,
+.aboutme.colnav a:hover {
+  background-color: #eee;
+  color: #000;
 }

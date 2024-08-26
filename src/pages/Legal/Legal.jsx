@@ -1,5 +1,6 @@
 import styles from "./Legal.module.css";
 import HomeLogo from "../../components/HomeLogo/HomeLogo";
+import { Link } from "react-router-dom";
 function Legal() {
   return (
     <div className={styles.legal}>
@@ -23,7 +24,11 @@ function Legal() {
             شود
           </li>
           <li>
-            در صورت هر نوع سوال در مورد نوبت ها و برنامه ها میتوانید با پشتیبانی
+            در صورت هر نوع سوال در مورد نوبت ها و برنامه ها میتوانید با
+            <Link to={"https://t.me/Ahmad_a00"} target="_blank">
+              {" "}
+              پشتیبانی{" "}
+            </Link>
             هماهنگ کنید.
           </li>
         </ul>
