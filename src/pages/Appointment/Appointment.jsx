@@ -127,8 +127,8 @@ function Appointment() {
             <textarea
               name=""
               id=""
-              cols="95"
-              rows="10"
+              // cols="95"
+              // rows="10"
               placeholder="توضیحات اضافه ..."
             ></textarea>
           </div>

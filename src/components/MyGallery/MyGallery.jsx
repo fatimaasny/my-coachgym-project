@@ -44,7 +44,6 @@ function MyGallery() {
     const newPositionScroll = scrollPosition + scrollAmount;
     setScrollPosition(newPositionScroll);
     contentRef.current.scrollLeft = newPositionScroll;
-    console.log(newPositionScroll);
   };
 
   return (

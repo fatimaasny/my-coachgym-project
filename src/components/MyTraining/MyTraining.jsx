@@ -119,6 +119,7 @@ function MyTraining() {
         return;
       }
     }
+
     console.log("count", count);
   };
 

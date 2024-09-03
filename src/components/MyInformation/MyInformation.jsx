@@ -15,6 +15,7 @@ import profileAhmad from "../../images/profile-ahmad.jpg";
 
 function MyInformation() {
   const navigate = useNavigate();
+ 
   return (
     <>
       <a id="home"></a>
@@ -51,7 +52,7 @@ function MyInformation() {
           <Button className={styles["btn-reservation"]}>
             <span
               onClick={() => {
-                navigate("/appointment");
+                navigate("/appointment", { place: "tamrin" });
               }}
             >
               سفارش برنامه
