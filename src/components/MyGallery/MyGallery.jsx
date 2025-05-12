@@ -3,9 +3,6 @@ import styles from "./MyGallery.module.css";
 
 import Title from "../Title/Title";
 
-import { CiCircleChevRight } from "react-icons/ci";
-import { CiCircleChevLeft } from "react-icons/ci";
-
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
 

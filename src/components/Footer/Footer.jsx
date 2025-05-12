@@ -1,5 +1,4 @@
 import styles from "./Footer.module.css";
-import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className={styles.footer}>
@@ -9,7 +8,9 @@ function Footer() {
         می باشد.
       </p>
       <p className={styles.designer}>
-        <Link to={"/"}>طراح سایت فاطیما سینایی</Link>
+        <a href={"http://fatimasinayi.com/"} target="_blank">
+          طراح سایت فاطیما سینایی
+        </a>
       </p>
     </footer>
   );
