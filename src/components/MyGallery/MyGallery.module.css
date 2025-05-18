@@ -14,11 +14,8 @@
   height: 520px;
 }
 .items .itemImg {
-  /* width: 380px;
-  height: 500px; */
-  /* width: fit-content;
-  height: fit-content; */
-  width: 350px;
+  width: 310px;
+  height: 500px;
   display: flex;
   justify-content: center;
   overflow: hidden;

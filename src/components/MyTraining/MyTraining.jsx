@@ -78,49 +78,49 @@ function MyTraining() {
   const searchHandler = (event) => {
     setSearchInput(event.target.value);
   };
-  const filterHandler = async (value) => {
-    await setLastIndexList(0);
-    await setUpdatedList([]);
+  const filterHandler = (value) => {
+    setLastIndexList(0);
+    setUpdatedList([]);
 
     if (value === "همه") {
-      await setList([...movies]);
+      setList([...movies]);
     } else {
       const nlist = movies.filter((l) => l.category === value);
-      await setList(nlist);
+      setList(nlist);
     }
-    console.log("index :", lastIndexList, "up list:", updatedList);
+    // console.log("index :", lastIndexList, "up list:", updatedList);
     showMoreHandler();
   };
   const filterSearchHandler = async () => {
     if (searchInput === "") {
-      await setList([...movies]);
+      setList([...movies]);
     } else {
       const nlist = movies.filter((l) => l.title.includes(searchInput));
-      await setList(nlist);
+      setList(nlist);
     }
     showMoreHandler();
   };
 
-  const showMoreHandler = async () => {
+  const showMoreHandler = () => {
     let count = 0;
     while (count < 2) {
       if (list[lastIndexList]) {
         const newUpdatedList = list.slice(lastIndexList, lastIndexList + 1);
-        console.log(newUpdatedList);
+        // console.log(newUpdatedList);
         if (updatedList.length !== 0) {
-          await setUpdatedList([...updatedList, ...newUpdatedList]);
+          setUpdatedList([...updatedList, ...newUpdatedList]);
         } else {
-          await setUpdatedList([...newUpdatedList]);
+          setUpdatedList([...newUpdatedList]);
         }
-        await setLastIndexList(lastIndexList + 1);
-        console.log("index", lastIndexList);
+        setLastIndexList(lastIndexList + 1);
+        // console.log("index", lastIndexList);
         count++;
       } else {
         return;
       }
     }
 
-    console.log("count", count);
+    // console.log("count", count);
   };
 
   useEffect(() => {
