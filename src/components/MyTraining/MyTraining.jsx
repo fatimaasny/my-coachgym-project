@@ -24,13 +24,13 @@ const movies = [
   {
     src: nashrDambelTarafinVideo,
     type: "video/mp4",
-    title: "down ward dog",
+    title: "سگ سر پایین",
     category: "اصلاحی گردن",
   },
   {
     src: nashrDambelTarafinVideo,
     type: "video/mp4",
-    title: "supine piriformise stretch",
+    title: "کشش عضله پیریفورمیس",
     category: "اصلاحی کمر",
   },
   {
@@ -65,12 +65,24 @@ const movies = [
   },
 ];
 
+const trainingTitles = [
+  "همه",
+  "پا",
+  "سینه",
+  "سرشانه",
+  "بازو",
+  "زیربغل",
+  "شکم و پهلو",
+  "اصلاحی کمر",
+  "اصلاحی گردن",
+];
+
 function MyTraining() {
-  const [list, setList] = useState([...movies]);
+  // const [list, setList] = useState([...movies]);
   const [updatedList, setUpdatedList] = useState([]);
   const [selected, setSelected] = useState("همه");
   const [searchInput, setSearchInput] = useState("");
-  const [lastIndexList, setLastIndexList] = useState(0);
+  // const [lastIndexList, setLastIndexList] = useState(0);
 
   const handlerSelect = (value) => {
     setSelected(value);
@@ -79,53 +91,54 @@ function MyTraining() {
     setSearchInput(event.target.value);
   };
   const filterHandler = (value) => {
-    setLastIndexList(0);
+    // setLastIndexList(0);
     setUpdatedList([]);
 
     if (value === "همه") {
-      setList([...movies]);
+      setUpdatedList([...movies]);
     } else {
       const nlist = movies.filter((l) => l.category === value);
-      setList(nlist);
+      setUpdatedList(nlist);
     }
-    // console.log("index :", lastIndexList, "up list:", updatedList);
-    showMoreHandler();
+    // showMoreHandler();
   };
+
   const filterSearchHandler = async () => {
+    setUpdatedList([]);
     if (searchInput === "") {
-      setList([...movies]);
+      setUpdatedList([...movies]);
     } else {
       const nlist = movies.filter((l) => l.title.includes(searchInput));
-      setList(nlist);
+      setUpdatedList(nlist);
     }
-    showMoreHandler();
+    // showMoreHandler();
   };
 
-  const showMoreHandler = () => {
-    let count = 0;
-    while (count < 2) {
-      if (list[lastIndexList]) {
-        const newUpdatedList = list.slice(lastIndexList, lastIndexList + 1);
-        // console.log(newUpdatedList);
-        if (updatedList.length !== 0) {
-          setUpdatedList([...updatedList, ...newUpdatedList]);
-        } else {
-          setUpdatedList([...newUpdatedList]);
-        }
-        setLastIndexList(lastIndexList + 1);
-        // console.log("index", lastIndexList);
-        count++;
-      } else {
-        return;
-      }
-    }
+  // const showMoreHandler = () => {
+  //   let count = 0;
+  //   while (count < 2) {
+  //     if (list[lastIndexList]) {
+  //       const newUpdatedList = list.slice(lastIndexList, lastIndexList + 1);
+  //       // console.log(newUpdatedList);
+  //       if (updatedList.length !== 0) {
+  //         setUpdatedList([...updatedList, ...newUpdatedList]);
+  //       } else {
+  //         setUpdatedList([...newUpdatedList]);
+  //       }
+  //       setLastIndexList(lastIndexList + 1);
+  //       // console.log("index", lastIndexList);
+  //       count++;
+  //     } else {
+  //       return;
+  //     }
+  //   }
 
-    // console.log("count", count);
-  };
+  //   // console.log("count", count);
+  // };
 
   useEffect(() => {
     filterHandler("همه");
-    showMoreHandler();
+    // showMoreHandler();
   }, []);
 
   return (
@@ -135,123 +148,21 @@ function MyTraining() {
         <Title title="آموزش ها" />
         <div className={styles.title}>
           <ul className={styles.menu}>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "همه" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("همه");
-                  filterHandler("همه");
-                }}
-              >
-                همه
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "پا" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("پا");
-                  filterHandler("پا");
-                }}
-              >
-                پا
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "سینه" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("سینه");
-                  filterHandler("سینه");
-                }}
-              >
-                سینه
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "سرشانه" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("سرشانه");
-                  filterHandler("سرشانه");
-                }}
-              >
-                سرشانه
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "بازو" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("بازو");
-                  filterHandler("بازو");
-                }}
-              >
-                بازو
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "زیربغل" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("زیربغل");
-                  filterHandler("زیربغل");
-                }}
-              >
-                زیربغل
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "شکم و پهلو" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("شکم و پهلو");
-                  filterHandler("شکم و پهلو");
-                }}
-              >
-                شکم و پهلو
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "اصلاحی کمر" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("اصلاحی کمر");
-                  filterHandler("اصلاحی کمر");
-                }}
-              >
-                اصلاحی کمر
-              </button>
-            </li>
-            <li>
-              <button
-                className={`${styles.button} ${
-                  selected === "اصلاحی گردن" && styles.btnclick
-                }`}
-                onClick={() => {
-                  handlerSelect("اصلاحی گردن");
-                  filterHandler("اصلاحی گردن");
-                }}
-              >
-                اصلاحی گردن
-              </button>
-            </li>
+            {trainingTitles.map((item, index) => (
+              <li key={index}>
+                <button
+                  className={`${styles.button} ${
+                    selected === item && styles.btnclick
+                  }`}
+                  onClick={() => {
+                    handlerSelect(item);
+                    filterHandler(item);
+                  }}
+                >
+                  {item}
+                </button>
+              </li>
+            ))}
           </ul>
           <div className={styles.search}>
             <input
@@ -277,11 +188,11 @@ function MyTraining() {
             />
           ))}
         </div>
-        <div className={styles.button}>
+        {/* <div className={styles.button}>
           <Button className={styles["btn-show-more"]} onClick={showMoreHandler}>
             نمایش بیشتر
           </Button>
-        </div>
+        </div> */}
       </div>
     </>
   );

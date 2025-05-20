@@ -3,6 +3,7 @@ import styles from "./ContactMe.module.css";
 import Title from "../Title/Title";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import ModalSuccess from "../ModalSuccess/ModalSuccess";
 
 import { useInput } from "../../hooks/useInput";
 import { isEmpty, isText, isInstagramId } from "../../util/Validation";
@@ -37,6 +38,9 @@ const list = [
 function ContactMe() {
   const formRef = useRef();
   const messageRef = useRef(""); // "" -> string     ,   null -> dom element
+
+  const dialogRef = useRef();
+
   const {
     handleEditedState: handleFullnameEditedState,
     handleValidate: handleFullnameValidate,
@@ -65,7 +69,7 @@ function ContactMe() {
     const url = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
 
     try {
-      const ressponse = await fetch(url, {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,13 +79,22 @@ function ContactMe() {
           text: message,
         }),
       });
-      if (ressponse.ok) {
+      if (response.ok) {
         console.log("پیام ارسال شد");
       } else {
         console.error("خطا در ارسال پیام");
       }
     } catch (error) {
       console.error("خطا:", error);
+    }
+  }
+
+  function handleShowModal() {
+    if (dialogRef) {
+      dialogRef.current.showModal();
+      setTimeout(() => {
+        dialogRef.current.close();
+      }, 2000);
     }
   }
 
@@ -125,8 +138,6 @@ function ContactMe() {
       return;
     }
 
-    console.log("ok form , data is : ", data);
-
     messageRef.current = "";
     for (const key in data) {
       const edited = (data[key] || "").trim();
@@ -134,6 +145,8 @@ function ContactMe() {
     }
     console.log("message: ", messageRef.current);
     sendMessageToTelegram(messageRef.current);
+
+    handleShowModal();
 
     handleFullnameReset();
     handleInstagramidReset();
@@ -143,6 +156,8 @@ function ContactMe() {
 
   return (
     <>
+      <ModalSuccess dialogRef={dialogRef} />
+
       <a id="contactMe"></a>
       <div className={styles.contact}>
         <Title title="ارتباط با من" />
@@ -150,6 +165,7 @@ function ContactMe() {
           <div className={styles.info}>
             {list.map((l, index) => (
               <InfoItem
+                key={index}
                 icon={l.icon}
                 title={l.title}
                 text={l.text}
@@ -160,7 +176,7 @@ function ContactMe() {
           <div className={styles["sending-message"]}>
             <form
               className={styles.form}
-              onClick={handleFormSubmit}
+              onSubmit={handleFormSubmit}
               ref={formRef}
             >
               <div className={styles.inputs}>

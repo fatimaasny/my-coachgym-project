@@ -1,0 +1,14 @@
+.inputnumber {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  height: 40px;
+}
+
+.error p {
+  font-size: 0.7rem;
+  color: red;
+  padding: 1rem 0.5rem;
+}

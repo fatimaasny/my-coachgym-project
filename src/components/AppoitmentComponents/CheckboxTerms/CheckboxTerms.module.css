@@ -1,0 +1,29 @@
+.terms {
+    margin: 2rem 0;
+  
+  }
+  .terms .content{
+    display: flex;
+    align-items: center;
+  }
+  
+  .terms input {
+    margin-top: 0;
+  }
+  
+  .terms a {
+    color: #444;
+    margin-right: 0.5rem;
+  }
+  .terms a:hover {
+    color: #888;
+  }
+
+  .error {
+    height: 40px;
+  }
+  .error p{
+   font-size: 0.7rem;
+   color: red;
+   padding: 1rem 0.5rem;
+  }

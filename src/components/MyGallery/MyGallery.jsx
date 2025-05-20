@@ -7,18 +7,25 @@ import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
 import { Images_List } from "../../IMAGES_LIST";
 
-const widthItem = 320;
-
 function MyGallery() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [canClickRight, setCanClickRight] = useState();
-  const [canClickLeft, setCanClickLeft] = useState();
-
+  const [canClickRight, setCanClickRight] = useState(false);
+  const [canClickLeft, setCanClickLeft] = useState(true);
   const contentRef = useRef();
+  const widthItemRef = useRef(0);
 
   useEffect(() => {
     const checkSize = () => {
-      // بگم توی هر سایزی مقدار این عرض چقدر باشه
+      if (contentRef.current) {
+        const width = contentRef.current.offsetWidth;
+        if (width <= 602) {
+          widthItemRef.current = 330;
+        } else if (width <= 1000) {
+          widthItemRef.current = 660;
+        } else {
+          widthItemRef.current = 990;
+        }
+      }
     };
     checkSize();
     window.addEventListener("resize", checkSize);
@@ -29,13 +36,27 @@ function MyGallery() {
   }, []);
 
   useEffect(() => {
-    // اینجا باید بگم کی دکمه ها غیر فعال بشن
-  }, [canClickLeft, canClickRight]);
+    if (contentRef.current) {
+      const { scrollWidth, clientWidth, scrollLeft } = contentRef.current;
 
-  const scrollHandler = (scrollAmount) => {
-    const newPositionScroll = scrollPosition + scrollAmount;
-    setScrollPosition(newPositionScroll);
-    contentRef.current.scrollLeft = newPositionScroll;
+      setCanClickRight(Math.abs(scrollLeft) > 0);
+      setCanClickLeft(
+        Math.abs(scrollLeft) < scrollWidth - clientWidth &&
+          scrollWidth - clientWidth - Math.abs(scrollLeft) > 50
+      );
+    }
+  }, [scrollPosition]);
+
+  const scrollHandler = (direction) => {
+    const newPositionScroll =
+      direction === "left"
+        ? scrollPosition - widthItemRef.current
+        : scrollPosition + widthItemRef.current;
+
+    if (contentRef.current) {
+      contentRef.current.scrollLeft = newPositionScroll;
+      setScrollPosition(newPositionScroll);
+    }
   };
 
   return (
@@ -43,38 +64,26 @@ function MyGallery() {
       <a id="gallery"></a>
       <div className={styles.gallery}>
         <Title title="گالری من" />
-        <div
-          className={styles.contentref}
-          ref={contentRef}
-          style={{
-            // width: "1200px",
-            width: "100%",
-            // margin: "0 auto",
-            overflowX: "scroll",
-            scrollBehavior: "smooth",
-            // background: "yellow",
-          }}
-        >
-          <div className={styles.items}>
-            {Images_List.map((i, index) => (
-              <div key={index} className={styles.itemImg}>
-                <img src={i} alt="gallery-image.jpg" />
-              </div>
-            ))}
-          </div>
+        <div className={styles.contentRef} ref={contentRef}>
+          {Images_List.map((i, index) => (
+            <div key={index} className={styles.itemImg}>
+              <img src={i} alt="gallery-image.jpg" />
+            </div>
+          ))}
         </div>
         <div className={styles.buttons}>
           <button
             className={styles["btn-right"]}
-            onClick={() => scrollHandler(widthItem)}
-            // disabled={!canClickRight}
+            onClick={() => scrollHandler("right")}
+            disabled={!canClickRight}
           >
             <FaCircleChevronRight fontSize="3.5rem" />
           </button>
+
           <button
             className={styles["btn-left"]}
-            onClick={() => scrollHandler(-widthItem)}
-            // disabled={!canClickLeft}
+            onClick={() => scrollHandler("left")}
+            disabled={!canClickLeft}
           >
             <FaCircleChevronLeft fontSize="3.5rem" />
           </button>
