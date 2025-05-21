@@ -1,19 +1,18 @@
-.modal{
-    width: 30vw;
-    height: 10vh;
-    margin: 0 auto;
-    top:40%;
-    border: 2px solid #000;
-    border-radius: 10px;
-    background: #f9f9f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+.modal {
+  width: 30vw;
+  height: 10vh;
+  margin: 0 auto;
+  top: 40%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
-.modal p{
-    color: #000;
-    font-size: 1rem;
-
+.modal p {
+  color: #000;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
 }
