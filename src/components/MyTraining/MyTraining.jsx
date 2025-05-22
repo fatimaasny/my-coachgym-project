@@ -80,7 +80,7 @@ const trainingTitles = [
 function MyTraining() {
   // const [list, setList] = useState([...movies]);
   const [updatedList, setUpdatedList] = useState([]);
-  const [selected, setSelected] = useState("همه");
+  const [selected, setSelected] = useState("پا");
   const [searchInput, setSearchInput] = useState("");
   // const [lastIndexList, setLastIndexList] = useState(0);
 
