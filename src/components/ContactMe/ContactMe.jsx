@@ -94,13 +94,13 @@ function ContactMe() {
     if (dialogRef) {
       dialogRef.current.showModal();
 
-      // if (timeoutRef.current) {
-      //   clearTimeout(timeoutRef.current);
-      // }
-      // timeoutRef.current = setTimeout(() => {
-      //   dialogRef.current.close();
-      //   timeoutRef.current = null;
-      // }, 2000);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        dialogRef.current.close();
+        timeoutRef.current = null;
+      }, 2000);
     }
   }
 
