@@ -40,6 +40,7 @@ function ContactMe() {
   const messageRef = useRef(""); // "" -> string     ,   null -> dom element
 
   const dialogRef = useRef();
+  const timeoutRef = useRef();
 
   const {
     handleEditedState: handleFullnameEditedState,
@@ -92,9 +93,14 @@ function ContactMe() {
   function handleShowModal() {
     if (dialogRef) {
       dialogRef.current.showModal();
-      setTimeout(() => {
-        dialogRef.current.close();
-      }, 2000);
+
+      // if (timeoutRef.current) {
+      //   clearTimeout(timeoutRef.current);
+      // }
+      // timeoutRef.current = setTimeout(() => {
+      //   dialogRef.current.close();
+      //   timeoutRef.current = null;
+      // }, 2000);
     }
   }
 

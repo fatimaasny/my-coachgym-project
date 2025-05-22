@@ -14,5 +14,20 @@
   font-size: 1rem;
   display: flex;
   align-items: center;
-  padding-right: 1rem;
+  padding: 1rem;
+}
+
+@media (max-width: 648px) {
+  .modal {
+    width: 70vw;
+  }
+  .modal p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 649px) and (max-width: 1024px) {
+  .modal {
+    width: 45vw;
+  }
 }

@@ -7,15 +7,19 @@ import InputRadioA from "../../components/AppoitmentComponents/InputRadioA/Input
 import InputNumberA from "../../components/AppoitmentComponents/InputNumberA/InputNumberA";
 import TextAreaA from "../../components/AppoitmentComponents/TextAreaA/TextAreaA";
 import CheckboxTerms from "../../components/AppoitmentComponents/CheckboxTerms/CheckboxTerms";
+import ModalSuccess from "../../components/ModalSuccess/ModalSuccess";
 
 import { isEmpty, isMobile, isText, isTelegramId } from "../../util/Validation";
 import { useInput } from "../../hooks/useInput";
 
 import { useRef } from "react";
+import userEvent from "@testing-library/user-event";
 
 function Appointment() {
   const formRef = useRef();
   const messageRef = useRef("");
+  const dialogRef = useRef();
+  const timeoutRef = useRef();
 
   const {
     handleEditedState: handleFullNameEditedState,
@@ -151,6 +155,19 @@ function Appointment() {
     }
   }
 
+  function handleShowModal() {
+    if (dialogRef.current) {
+      dialogRef.current.showModal();
+
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        dialogRef.current.close();
+        timeoutRef.current = null;
+      }, 2000);
+    }
+  }
   function handleSubmitForm(e) {
     e.preventDefault();
 
@@ -278,6 +295,8 @@ function Appointment() {
     console.log("message to telegram is: ", messageRef.current);
     handleSenMessageToTelegram(messageRef.current);
 
+    handleShowModal();
+
     handleFullNameReset();
     handlephoneReset();
     handleTelegramIdReset();
@@ -296,296 +315,303 @@ function Appointment() {
     formRef.current.reset();
   }
   return (
-    <div className={styles.appointment}>
-      <HomeLogo />
-      <div className={styles.content}>
-        <h2 className={styles.title}>فرم سفارش برنامه:</h2>
-        <form className={styles.form} ref={formRef} onSubmit={handleSubmitForm}>
-          <InputAppointment
-            label="نام و نام خانوادگی"
-            id="fullName"
-            name="fullName"
-            error={fullNameError && "باید حداقل شش کاراکتر و عدد باشد."}
-            onFocus={() => {
-              handleFullNameEditedState(false);
-            }}
-            onBlur={() => {
-              handleFullNameEditedState(true);
-              handleFullNameValidate(isText(getData().fullName));
-            }}
-          />
-          <InputAppointment
-            label="شماره تماس"
-            id="phone"
-            name="phone"
-            error={phoneError && "شماره تماس 11 عدد می باشد."}
-            onFocus={() => {
-              handlePhoneEditedState(false);
-            }}
-            onBlur={() => {
-              handlePhoneEditedState(true);
-              handlePhoneValidate(isMobile(getData().phone));
-            }}
-          />
-
-          <InputAppointment
-            label="آیدی تلگرام"
-            id="telegram"
-            name="telegram"
-            error={telegramIdError && "فرمت وارد شده صحیح نیست."}
-            onFocus={() => {
-              handleTelegramIdEditedState(false);
-            }}
-            onBlur={() => {
-              handleTelegramIdEditedState(true);
-              handleTelegramIdValidate(isTelegramId(getData().telegram));
-            }}
-          />
-
-          <div className={styles.gender}>
-            <p>جنسیت :</p>
-            <InputRadioA
-              id="female"
-              value="female"
-              name="gender"
-              label="خانم"
+    <>
+      <ModalSuccess dialogRef={dialogRef} />
+      <div className={styles.appointment}>
+        <HomeLogo />
+        <div className={styles.content}>
+          <h2 className={styles.title}>فرم سفارش برنامه:</h2>
+          <form
+            className={styles.form}
+            ref={formRef}
+            onSubmit={handleSubmitForm}
+          >
+            <InputAppointment
+              label="نام و نام خانوادگی"
+              id="fullName"
+              name="fullName"
+              error={fullNameError && "باید حداقل شش کاراکتر و عدد باشد."}
+              onFocus={() => {
+                handleFullNameEditedState(false);
+              }}
+              onBlur={() => {
+                handleFullNameEditedState(true);
+                handleFullNameValidate(isText(getData().fullName));
+              }}
             />
-            <InputRadioA id="male" value="male" name="gender" label="آقا" />
-          </div>
-
-          <div className={styles.reserve}>
-            <p>رزرو نوبت :</p>
-            <InputRadioA
-              id="peresent"
-              value="peresent"
-              name="appointment"
-              label="حضوری"
+            <InputAppointment
+              label="شماره تماس"
+              id="phone"
+              name="phone"
+              error={phoneError && "شماره تماس 11 عدد می باشد."}
+              onFocus={() => {
+                handlePhoneEditedState(false);
+              }}
+              onBlur={() => {
+                handlePhoneEditedState(true);
+                handlePhoneValidate(isMobile(getData().phone));
+              }}
             />
-            <InputRadioA
-              id="online"
-              value="online"
-              name="appointment"
-              label="غیر حضوری"
-            />
-          </div>
 
-          <div className={styles.programm}>
-            <div className={styles.content}>
-              <p>نوع برنامه :</p>
+            <InputAppointment
+              label="آیدی تلگرام"
+              id="telegram"
+              name="telegram"
+              error={telegramIdError && "فرمت وارد شده صحیح نیست."}
+              onFocus={() => {
+                handleTelegramIdEditedState(false);
+              }}
+              onBlur={() => {
+                handleTelegramIdEditedState(true);
+                handleTelegramIdValidate(isTelegramId(getData().telegram));
+              }}
+            />
+
+            <div className={styles.gender}>
+              <p>جنسیت :</p>
               <InputRadioA
-                id="exercise"
-                value="exercise"
-                name="program"
-                label="تمرینی"
+                id="female"
+                value="female"
+                name="gender"
+                label="خانم"
               />
-              <InputRadioA
-                id="feeding"
-                value="feeding"
-                name="program"
-                label="تغذیه"
-              />
-              <InputRadioA
-                id="exercise-feeding"
-                value="exercise-feeding"
-                name="program"
-                label="تمرین و تغذیه"
-              />
+              <InputRadioA id="male" value="male" name="gender" label="آقا" />
             </div>
-          </div>
-          <div className={styles.price}>
-            <p>هزینه پرداختی</p>
-            <Button className={styles["btn-price"]}>
-              {(getData().program === "exercise" && "800,000") ||
-                (getData().program === "feeding" && "400,000") ||
-                (getData().program === "exercise-feeding" && "1,200,000") ||
-                "800,000"}
-              {" تومان "}
-            </Button>
-          </div>
-          <div className={styles.questions}>
-            <p className={styles["title-q"]}>سوالات:</p>
-            {/* سوالات مشترک */}
-            <div className={styles.details}>
-              <InputNumberA
-                name="age"
-                id="age"
-                label="سن"
-                placeholder={20}
-                min={8}
-                max={100}
-                error={ageError && "حداقل 8 و حداکثر 100 "}
-                onFocus={() => handleAgeEditedState(false)}
-                onBlur={() => {
-                  handleAgeEditedState(true);
-                  handleAgeValidate(8 <= getData().age <= 100);
-                }}
+
+            <div className={styles.reserve}>
+              <p>رزرو نوبت :</p>
+              <InputRadioA
+                id="peresent"
+                value="peresent"
+                name="appointment"
+                label="حضوری"
               />
-              <InputNumberA
-                name="height"
-                id="height"
-                label="قد"
-                placeholder={100}
-                min={70}
-                max={230}
-                error={heightError && "حداقل 70 و حداکثر 230 "}
-                onFocus={() => handleHeightEditedState(false)}
-                onBlur={() => {
-                  handleHeightEditedState(true);
-                  handleHeightValidate(70 <= getData().height <= 230);
-                }}
-              />
-              <InputNumberA
-                name="weight"
-                id="weight"
-                label="وزن"
-                placeholder={50}
-                min={20}
-                max={220}
-                error={weightError && "حداقل 20 و حداکثر 220 "}
-                onFocus={() => handleWeightEditedState(false)}
-                onBlur={() => {
-                  handleWeightEditedState(true);
-                  handleWeightValidate(20 <= getData().weight <= 220);
-                }}
+              <InputRadioA
+                id="online"
+                value="online"
+                name="appointment"
+                label="غیر حضوری"
               />
             </div>
 
-            {/* سوالات مخصوص تمرین */}
-            <InputAppointment
-              label="سابقه بیماری"
-              id="sickness"
-              name="sickness"
-              placeholder="مثال دیابت دارم"
-              error={sicknessError && "باید حداقل شش کاراکتر و عدد باشد."}
+            <div className={styles.programm}>
+              <div className={styles.content}>
+                <p>نوع برنامه :</p>
+                <InputRadioA
+                  id="exercise"
+                  value="exercise"
+                  name="program"
+                  label="تمرینی"
+                />
+                <InputRadioA
+                  id="feeding"
+                  value="feeding"
+                  name="program"
+                  label="تغذیه"
+                />
+                <InputRadioA
+                  id="exercise-feeding"
+                  value="exercise-feeding"
+                  name="program"
+                  label="تمرین و تغذیه"
+                />
+              </div>
+            </div>
+            <div className={styles.price}>
+              <p>هزینه پرداختی</p>
+              <Button className={styles["btn-price"]}>
+                {(getData().program === "exercise" && "800,000") ||
+                  (getData().program === "feeding" && "400,000") ||
+                  (getData().program === "exercise-feeding" && "1,200,000") ||
+                  "800,000"}
+                {" تومان "}
+              </Button>
+            </div>
+            <div className={styles.questions}>
+              <p className={styles["title-q"]}>سوالات:</p>
+              {/* سوالات مشترک */}
+              <div className={styles.details}>
+                <InputNumberA
+                  name="age"
+                  id="age"
+                  label="سن"
+                  placeholder={20}
+                  min={8}
+                  max={100}
+                  error={ageError && "حداقل 8 و حداکثر 100 "}
+                  onFocus={() => handleAgeEditedState(false)}
+                  onBlur={() => {
+                    handleAgeEditedState(true);
+                    handleAgeValidate(8 <= getData().age <= 100);
+                  }}
+                />
+                <InputNumberA
+                  name="height"
+                  id="height"
+                  label="قد"
+                  placeholder={100}
+                  min={70}
+                  max={230}
+                  error={heightError && "حداقل 70 و حداکثر 230 "}
+                  onFocus={() => handleHeightEditedState(false)}
+                  onBlur={() => {
+                    handleHeightEditedState(true);
+                    handleHeightValidate(70 <= getData().height <= 230);
+                  }}
+                />
+                <InputNumberA
+                  name="weight"
+                  id="weight"
+                  label="وزن"
+                  placeholder={50}
+                  min={20}
+                  max={220}
+                  error={weightError && "حداقل 20 و حداکثر 220 "}
+                  onFocus={() => handleWeightEditedState(false)}
+                  onBlur={() => {
+                    handleWeightEditedState(true);
+                    handleWeightValidate(20 <= getData().weight <= 220);
+                  }}
+                />
+              </div>
+
+              {/* سوالات مخصوص تمرین */}
+              <InputAppointment
+                label="سابقه بیماری"
+                id="sickness"
+                name="sickness"
+                placeholder="مثال دیابت دارم"
+                error={sicknessError && "باید حداقل شش کاراکتر و عدد باشد."}
+                onFocus={() => {
+                  handleSicknessEditedState(false);
+                }}
+                onBlur={() => {
+                  handleSicknessEditedState(true);
+                  handleSicknessValidate(isText(getData().sickness));
+                }}
+              />
+              <InputAppointment
+                label="سابقه تمرین"
+                id="practice"
+                name="practice"
+                placeholder="مثال یک سال یا ندارم"
+                error={practiceError && "باید حداقل شش کاراکتر و عدد باشد."}
+                onFocus={() => {
+                  handlePracticeEditedState(false);
+                }}
+                onBlur={() => {
+                  handlePracticeEditedState(true);
+                  handlePracticeValidate(isText(getData().practice));
+                }}
+              />
+              <InputAppointment
+                label="هدف از تمرین"
+                id="goal"
+                name="goal"
+                placeholder="مثال کاهش وزن یا ..."
+                error={goalError && "باید حداقل شش کاراکتر و عدد باشد."}
+                onFocus={() => {
+                  handleGoalEditedState(false);
+                }}
+                onBlur={() => {
+                  handleGoalEditedState(true);
+                  handleGoalValidate(isText(getData().goal));
+                }}
+              />
+              <InputAppointment
+                label="درد یا آسیب"
+                id="pain"
+                name="pain"
+                placeholder="مثال در دست چپ پلاتین یا درد دارم"
+                error={painError && "باید حداقل شش کاراکتر و عدد باشد."}
+                onFocus={() => {
+                  handlePainEditedState(false);
+                }}
+                onBlur={() => {
+                  handlePainEditedState(true);
+                  handlePainValidate(isText(getData().pain));
+                }}
+              />
+              <InputAppointment
+                label="مکمل مصرفی"
+                id="supplement"
+                name="supplement"
+                placeholder="مثال کراتین میخورم یا نمیخورم."
+                error={supplementError && "باید حداقل شش کاراکتر و عدد باشد."}
+                onFocus={() => {
+                  handleSupplementEditedState(false);
+                }}
+                onBlur={() => {
+                  handleSupplementEditedState(true);
+                  handleSupplementValidate(isText(getData().supplement));
+                }}
+              />
+
+              {/* سوالات مخصوص تغذیه */}
+
+              <InputAppointment
+                label="حساسیت غذایی"
+                id="allergy"
+                name="allergy"
+                placeholder="مثال به لبنیات حساسیت دارم"
+                error={allergyError && "باید حداقل شش کاراکتر و عدد باشد."}
+                onFocus={() => {
+                  handleAllergytEditedState(false);
+                }}
+                onBlur={() => {
+                  handleAllergytEditedState(true);
+                  handleAllergyValidate(isText(getData().allergy));
+                }}
+              />
+
+              <InputAppointment
+                label="ساعت تمرین"
+                id="time"
+                name="time"
+                error={timeError && "باید حداقل شش کاراکتر و عدد باشد."}
+                placeholder="مثال صبح 9 تا 11"
+                onFocus={() => {
+                  handleTimeEditedState(false);
+                }}
+                onBlur={() => {
+                  handleTimeEditedState(true);
+                  handleTimeValidate(isText(getData().time));
+                }}
+              />
+            </div>
+            <TextAreaA
+              error={messageError && "باید حداقل شش کاراکتر و عدد باشد."}
               onFocus={() => {
-                handleSicknessEditedState(false);
+                handleMessageEditedState(false);
               }}
               onBlur={() => {
-                handleSicknessEditedState(true);
-                handleSicknessValidate(isText(getData().sickness));
+                handleMessageEditedState(true);
+                handleMessageValidate(isText(getData().message));
               }}
             />
-            <InputAppointment
-              label="سابقه تمرین"
-              id="practice"
-              name="practice"
-              placeholder="مثال یک سال یا ندارم"
-              error={practiceError && "باید حداقل شش کاراکتر و عدد باشد."}
+            <CheckboxTerms
+              error={termsError && "باید حداقل شش کاراکتر و عدد باشد."}
               onFocus={() => {
-                handlePracticeEditedState(false);
+                handleTermsEditedState(false);
               }}
               onBlur={() => {
-                handlePracticeEditedState(true);
-                handlePracticeValidate(isText(getData().practice));
-              }}
-            />
-            <InputAppointment
-              label="هدف از تمرین"
-              id="goal"
-              name="goal"
-              placeholder="مثال کاهش وزن یا ..."
-              error={goalError && "باید حداقل شش کاراکتر و عدد باشد."}
-              onFocus={() => {
-                handleGoalEditedState(false);
-              }}
-              onBlur={() => {
-                handleGoalEditedState(true);
-                handleGoalValidate(isText(getData().goal));
-              }}
-            />
-            <InputAppointment
-              label="درد یا آسیب"
-              id="pain"
-              name="pain"
-              placeholder="مثال در دست چپ پلاتین یا درد دارم"
-              error={painError && "باید حداقل شش کاراکتر و عدد باشد."}
-              onFocus={() => {
-                handlePainEditedState(false);
-              }}
-              onBlur={() => {
-                handlePainEditedState(true);
-                handlePainValidate(isText(getData().pain));
-              }}
-            />
-            <InputAppointment
-              label="مکمل مصرفی"
-              id="supplement"
-              name="supplement"
-              placeholder="مثال کراتین میخورم یا نمیخورم."
-              error={supplementError && "باید حداقل شش کاراکتر و عدد باشد."}
-              onFocus={() => {
-                handleSupplementEditedState(false);
-              }}
-              onBlur={() => {
-                handleSupplementEditedState(true);
-                handleSupplementValidate(isText(getData().supplement));
+                handleTermsEditedState(true);
+                handleTermsValidate(getData().terms);
               }}
             />
 
-            {/* سوالات مخصوص تغذیه */}
-
-            <InputAppointment
-              label="حساسیت غذایی"
-              id="allergy"
-              name="allergy"
-              placeholder="مثال به لبنیات حساسیت دارم"
-              error={allergyError && "باید حداقل شش کاراکتر و عدد باشد."}
-              onFocus={() => {
-                handleAllergytEditedState(false);
-              }}
-              onBlur={() => {
-                handleAllergytEditedState(true);
-                handleAllergyValidate(isText(getData().allergy));
-              }}
-            />
-
-            <InputAppointment
-              label="ساعت تمرین"
-              id="time"
-              name="time"
-              error={timeError && "باید حداقل شش کاراکتر و عدد باشد."}
-              placeholder="مثال صبح 9 تا 11"
-              onFocus={() => {
-                handleTimeEditedState(false);
-              }}
-              onBlur={() => {
-                handleTimeEditedState(true);
-                handleTimeValidate(isText(getData().time));
-              }}
-            />
-          </div>
-          <TextAreaA
-            error={messageError && "باید حداقل شش کاراکتر و عدد باشد."}
-            onFocus={() => {
-              handleMessageEditedState(false);
-            }}
-            onBlur={() => {
-              handleMessageEditedState(true);
-              handleMessageValidate(isText(getData().message));
-            }}
-          />
-          <CheckboxTerms
-            error={termsError && "باید حداقل شش کاراکتر و عدد باشد."}
-            onFocus={() => {
-              handleTermsEditedState(false);
-            }}
-            onBlur={() => {
-              handleTermsEditedState(true);
-              handleTermsValidate(getData().terms);
-            }}
-          />
-
-          {/* <div className={styles.uploading}>
+            {/* <div className={styles.uploading}>
             <Button className={styles["btn-uploding"]}>آپلود عکس</Button>
             <div className={styles["show-images"]}>نمایش عکس ها</div>
           </div> */}
 
-          <div className={styles.send}>
-            <Button className={styles["btn-sending"]}>ارسال</Button>
-          </div>
-        </form>
+            <div className={styles.send}>
+              <Button className={styles["btn-sending"]}>ارسال</Button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
